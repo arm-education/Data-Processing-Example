@@ -45,5 +45,14 @@ add_subdirectory(include)
 
 
 if(BUILD_TESTS)
-    add_subdirectory(tests)
+    include(FetchContent)
+
+    FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/refs/tags/v1.15.2.zip
+        DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+    )
+    FetchContent_MakeAvailable(googletest)
+
+    add_subdirectory(test)
 endif()
