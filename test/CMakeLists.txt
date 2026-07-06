@@ -10,3 +10,17 @@ target_link_libraries(${GENERATE_VISUALIZATION_EXECUTABLE}
             ${CORE_LIBRARY}        
 )
 
+
+add_executable(unit_tests "test.cpp")
+
+target_link_libraries(unit_tests
+        PRIVATE
+            ${CORE_LIBRARY}
+            GTest::gtest_main
+)
+
+add_custom_target(run_unit_tests
+        COMMAND unit_tests
+        DEPENDS unit_tests
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
